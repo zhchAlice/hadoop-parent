@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration>
+    <Appenders>
+        <!-- 配置日志输出文件名字追加读写 -->
+        <RollingFile name="REVIEW_LOG" fileName="/opt/flume/flumeSpoolDir/review.log"
+                     filePattern="/opt/flume/flumeSpoolDir/review.%d{yyyy-MM-dd-HH-mm-ss}.log"
+                     append="true">
+            <!-- 输出格式 -->
+            <PatternLayout pattern="[%l] [%t] [%-4r] [%d{yyyy-MM-dd HH:mm:ss,SSS}] [%p] \: %m%n"/>
+            <!-- 设置策略 -->
+            <Policies>
+                <!-- 基于时间的触发策略。该策略主要是完成周期性的log文件封存工作。有两个参数：
+                    interval，integer型，指定两次封存动作之间的时间间隔。单位:以日志的命名精度filePattern来确定单位，
+                        比如这里配置的yyyy-MM-dd-HH-mm-ss 单位为秒，interval="5"表示美5秒生成一个新的日志文件
+                    modulate，boolean型，说明是否对封存时间进行调制。
+                 -->
+                <TimeBasedTriggeringPolicy interval="5" modulate="true" />
+            </Policies>
+        </RollingFile>
+    </Appenders>
+    <Loggers>
+        <!-- 配置记录器级别 -->
+        <Root level="info">
+            <AppenderRef ref="REVIEW_LOG"/>
+        </Root>
+    </Loggers>
+</Configuration>
