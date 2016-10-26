@@ -27,7 +27,6 @@ public class MaxTemperature {
         Job job = null;
         try {
             job = Job.getInstance();
-            //job.setJar("D:\\Code\\Hadoop\\hadoop-parent\\hadoop-service\\target\\hadoop-service-1.0-SNAPSHOT.jar");
             job.setJobName("hadoop mapreduce MaxTemperature");
             //配置作业各个类
             job.setJarByClass(MaxTemperature.class);
