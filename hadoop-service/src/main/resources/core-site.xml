@@ -23,6 +23,6 @@
     </property>
   <property>
      <name>fs.default.name</name>
-     <value>hdfs://172.16.100.78:9000</value>
+     <value>hdfs://app4:9000</value>
   </property>
 </configuration>

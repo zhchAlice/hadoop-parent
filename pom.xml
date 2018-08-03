@@ -44,7 +44,16 @@
                     </exclusion>
                 </exclusions>
             </dependency>
-
+            <dependency>
+                <groupId>org.apache.hadoop</groupId>
+                <artifactId>hadoop-yarn-client</artifactId>
+                <version>${apache.hadoop.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.hadoop</groupId>
+                <artifactId>hadoop-yarn-server-resourcemanager</artifactId>
+                <version>${apache.hadoop.version}</version>
+            </dependency>
             <dependency>
                 <groupId>org.apache.hadoop</groupId>
                 <artifactId>hadoop-mapreduce-examples</artifactId>
@@ -125,6 +134,22 @@
                     </exclusion>
                 </exclusions>
             </dependency>
+            <dependency>
+                <groupId>org.apache.hbase</groupId>
+                <artifactId>hbase-server</artifactId>
+                <version>${apache.hbase.version}</version>
+                <exclusions>
+                    <exclusion>
+                        <groupId>org.apache.hadoop</groupId>
+                        <artifactId>hadoop-auth</artifactId>
+                    </exclusion>
+                </exclusions>
+            </dependency>
+            <dependency>
+                <groupId>org.jblas</groupId>
+                <artifactId>jblas</artifactId>
+                <version>1.2.4</version>
+            </dependency>
 
             <!-- Spark Dependencies Begin -->
             <dependency>
@@ -147,6 +172,12 @@
                 <groupId>org.apache.spark</groupId>
                 <artifactId>spark-mllib_2.10</artifactId>
                 <version>${apache.spark.version}</version>
+            </dependency>
+            <!--POI XSL-->
+            <dependency>
+                <groupId>org.apache.poi</groupId>
+                <artifactId>poi-ooxml</artifactId>
+                <version>3.15</version>
             </dependency>
             <!--
             <dependency>
@@ -261,6 +292,12 @@
                 <artifactId>spring-webmvc-portlet</artifactId>
                 <version>${org.springframework.version}</version>
             </dependency>
+            <dependency>
+                <groupId>org.apache.thrift</groupId>
+                <artifactId>libthrift</artifactId>
+                <version>0.9.2</version>
+            </dependency>
+
 
             <!--log配置-->
             <dependency>

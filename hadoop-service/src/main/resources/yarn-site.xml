@@ -25,23 +25,23 @@
     </property>
     <property>
         <name>yarn.resourcemanager.address</name>
-        <value>master:8032</value>
+        <value>app4:8032</value>
     </property>
     <property>
         <name>yarn.resourcemanager.scheduler.address</name>
-        <value>master:8030</value>
+        <value>app4:8030</value>
     </property>
     <property>
         <name>yarn.resourcemanager.resource-tracker.address</name>
-        <value>master:8035</value>
+        <value>app4:8035</value>
     </property>
     <property>
         <name>yarn.resourcemanager.admin.address</name>
-        <value>master:8033</value>
+        <value>app4:8033</value>
     </property>
     <property>
         <name>yarn.resourcemanager.webapp.address</name>
-        <value>master:8088</value>
+        <value>app4:8088</value>
     </property>
 
 </configuration>

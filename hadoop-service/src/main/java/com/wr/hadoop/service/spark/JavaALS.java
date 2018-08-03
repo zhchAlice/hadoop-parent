@@ -12,6 +12,7 @@ import org.apache.spark.mllib.recommendation.Rating;
 import java.util.Arrays;
 import java.util.regex.Pattern;
 
+import org.apache.spark.sql.DataFrameNaFunctions;
 import scala.Tuple2;
 
 /**
@@ -53,6 +54,7 @@ public class JavaALS {
         if (args.length == 5) {
             blocks = Integer.parseInt(args[4]);
         }
+
 
         JavaSparkContext sc = new JavaSparkContext(sparkConf);
         JavaRDD<String> lines = sc.textFile(args[0]);

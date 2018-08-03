@@ -55,16 +55,14 @@ public class WordCount {
         public IntSumReducer() {
         }
 
-        public void reduce(Text key, Iterable<IntWritable> values, Reducer<Text, IntWritable, Text, IntWritable>.Context context) throws IOException, InterruptedException {
+        @Override
+        protected void reduce(Text key, Iterable<IntWritable> values, Context context) throws IOException, InterruptedException {
             int sum = 0;
-
-            IntWritable val;
-            for(Iterator i$ = values.iterator(); i$.hasNext(); sum += val.get()) {
-                val = (IntWritable)i$.next();
+            for (IntWritable value:values){
+                sum += value.get();
             }
-
-            this.result.set(sum);
-            context.write(key, this.result);
+            result.set(sum);
+            context.write(key,result);
         }
     }
 
@@ -75,14 +73,14 @@ public class WordCount {
         public TokenizerMapper() {
         }
 
-        public void map(Object key, Text value, Mapper<Object, Text, Text, IntWritable>.Context context) throws IOException, InterruptedException {
+        @Override
+        protected void map(Object key, Text value, Context context) throws IOException, InterruptedException {
             StringTokenizer itr = new StringTokenizer(value.toString());
 
             while(itr.hasMoreTokens()) {
                 this.word.set(itr.nextToken());
                 context.write(this.word, one);
             }
-
         }
     }
 }

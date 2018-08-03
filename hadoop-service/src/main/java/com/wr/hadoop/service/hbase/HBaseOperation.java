@@ -23,11 +23,10 @@ public class HBaseOperation {
     public HBaseOperation() {
         configuration = HBaseConfiguration.create();
         configuration.set("hbase.zookeeper.property.clientPort", "2181");
-        configuration.set("hbase.zookeeper.quorum", "172.16.160.12,172.16.160.13,172.16.160.14");
-        configuration.set("hbase.master", "172.16.100.78");
-        configuration.set("zookeeper.znode.parent","/hbase");
-        configuration.set("hbase.rpc.timeout", "1800000");
-        configuration.set("ipc.socket.timeout", "100000");
+        configuration.set("zookeeper.znode.parent", "/hbase-other");
+        configuration.set("hbase.zookeeper.quorum", "zk01,zk02,zk03");
+        configuration.set("hbase.rootdir","hdfs://app4:9000/hbase-other");
+        configuration.set("hbase.client.write.buffer","5242880");
     }
 
     public static void init() throws IOException {
@@ -62,6 +61,12 @@ public class HBaseOperation {
         }
         admin.createTable(hTableDescriptor);
         close();
+    }
+
+    public static void createTableIfNotExists(String tableName, String[] colFamilies) throws IOException {
+        if (!isTableExist(tableName)) {
+            createTable(tableName, colFamilies);
+        }
     }
 
     /**
@@ -131,6 +136,15 @@ public class HBaseOperation {
         close();
     }
 
+    public static void insertRows(String tableName, List<Put> puts) throws IOException {
+        init();
+        TableName tn = TableName.valueOf(tableName);
+        Table table = connection.getTable(tn);
+        table.put(puts);
+        table.close();
+        close();
+    }
+
     /**
      * 删除数据
      * @param tableName
@@ -186,5 +200,14 @@ public class HBaseOperation {
         table.close();
         close();
         return tableRowData;
+    }
+
+    public static void main(String[] args) throws IOException {
+        HBaseOperation hBaseOperation = new HBaseOperation();
+        if(hBaseOperation.isTableExist("user-behavior")) {
+            System.out.println("table exist");
+        } else {
+            System.out.println("table not exist");
+        }
     }
 }

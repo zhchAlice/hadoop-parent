@@ -22,10 +22,10 @@
         <value>/opt/hadoop/tmp</value>
     </property>
 
-    <property>
+    <!--<property>
         <name>mapreduce.framework.name</name>
         <value>yarn</value>
-    </property>
+    </property>-->
 
     <property>
         <name>mapred.remote.os</name>
@@ -39,13 +39,13 @@
 
     <property>
         <name>mapreduce.jobhistory.address</name>
-        <value>master:10020</value>
+        <value>app4:10020</value>
         <description>MapReduce JobHistory Server IPC host:port</description>
     </property>
 
     <property>
         <name>mapreduce.jobhistory.webapp.address</name>
-        <value>master:19888</value>
+        <value>app4:19888</value>
         <description>MapReduce JobHistory Server Web UI host:port</description>
     </property>
 
