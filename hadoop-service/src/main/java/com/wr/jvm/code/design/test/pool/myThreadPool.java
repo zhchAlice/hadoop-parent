@@ -28,6 +28,7 @@ public class myThreadPool {
         });
         for (int i=0; i<10; i++) {
             executorService.execute(thread);
+            executorService.submit(thread);
         }
     }
 }

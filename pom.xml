@@ -51,13 +51,19 @@
             </dependency>
             <dependency>
                 <groupId>org.apache.hadoop</groupId>
+                <artifactId>hadoop-mapreduce-examples</artifactId>
+                <version>${apache.hadoop.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.hadoop</groupId>
                 <artifactId>hadoop-yarn-server-resourcemanager</artifactId>
                 <version>${apache.hadoop.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.apache.hadoop</groupId>
-                <artifactId>hadoop-mapreduce-examples</artifactId>
+                <artifactId>hadoop-yarn-applications-distributedshell</artifactId>
                 <version>${apache.hadoop.version}</version>
+                <scope>provided</scope>
             </dependency>
 
             <!-- Storm Dependency Begin -->

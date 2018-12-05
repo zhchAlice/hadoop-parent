@@ -1,8 +1,6 @@
 package com.wr.jvm;
 
 
-import scala.util.parsing.combinator.testing.Str;
-
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
 
