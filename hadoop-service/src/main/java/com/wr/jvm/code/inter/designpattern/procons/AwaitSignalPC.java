@@ -23,10 +23,63 @@ public class AwaitSignalPC {
             while (resources.size()+num>MAX_VALUE){
                 NOT_FULL.await();
             }
+            for (int i=0;i<num;i++){
+                resources.addLast(new Object());
+            }
+            NOT_EMPTY.signalAll();
         } catch (InterruptedException e) {
             e.printStackTrace();
         } finally {
             lock.unlock();
+        }
+    }
+
+    public void consume(int num){
+        try {
+            lock.lockInterruptibly();
+            while (resources.size()<num){
+                NOT_EMPTY.await();
+            }
+            for (int i=0;i<num;i++){
+                resources.removeFirst();
+            }
+            NOT_FULL.signalAll();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+
+    static class Producer implements Runnable{
+        private AwaitSignalPC awaitSignalPC;
+        private int num;
+
+        public Producer(AwaitSignalPC awaitSignalPC, int num) {
+            this.awaitSignalPC = awaitSignalPC;
+            this.num = num;
+        }
+
+        @Override
+        public void run() {
+            while (true){
+                awaitSignalPC.produce(num);
+            }
+        }
+    }
+
+    static class Consumer implements Runnable{
+        private AwaitSignalPC awaitSignalPC;
+        private int num;
+
+        public Consumer(AwaitSignalPC awaitSignalPC, int num) {
+            this.awaitSignalPC = awaitSignalPC;
+            this.num = num;
+        }
+
+        @Override
+        public void run() {
+            while (true){
+                awaitSignalPC.consume(num);
+            }
         }
     }
 }
