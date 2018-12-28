@@ -67,6 +67,7 @@ public class Palindrome {
         return s.substring(lo,hi+1);
     }
 
+
     public static void main(String[] args) {
         //String s = "A man, a plan, a canal: Panama";
         //System.out.println(isPalindrome(s));
